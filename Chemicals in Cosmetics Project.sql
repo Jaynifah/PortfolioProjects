@@ -25,7 +25,6 @@ JOIN CTE_CHEMS CTE
 ON CiC.ChemicalName = CTE.ChemicalName
 
 
-
 --3. Brands with chemicals that were removed and discontinued
 SELECT BrandName, ChemicalName
 FROM [Chemicals_in_cosmetics-]
@@ -33,10 +32,8 @@ WHERE DiscontinuedDate IS NOT NULL AND ChemicalDateRemoved IS NOT NULL
 ORDER BY BrandName
 
 --4. Brands with Chemicals that were mostly reported in 2018
-SELECT DISTINCT BrandName, ChemicalName, COUNT(BrandName) TimesReported
+SELECT DISTINCT BrandName, COUNT(BrandName) TimesReported
 FROM [Chemicals_in_cosmetics-]
-WHERE ChemicalCreatedAt LIKE '%2018%'
-GROUP BY BrandName,ChemicalName  
+WHERE ChemicalCreatedAt LIKE '%2018%' 
+GROUP BY BrandName  
 ORDER BY TimesReported DESC
-
-
